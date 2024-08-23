@@ -1,4 +1,5 @@
-import { Controller, Post, Body } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -13,4 +14,10 @@ export class UserController {
   ) {
     return this.usersService.createUser(name, email, password);
   }
+
+  @Get("list")
+  async getAllUsers(){
+    return this.usersService.getAllUsers();
+  }
+
 }

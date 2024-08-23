@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -12,5 +13,9 @@ export class UsersService {
     return await newUser.save();
   }
 
+  async getAllUsers(): Promise<User[]> {
+    return await this.userModel.find().exec();
+  }
+  
   // Add other methods to interact with your user data
 }
