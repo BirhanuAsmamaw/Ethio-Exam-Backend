@@ -2,14 +2,21 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class ExamService {
+export class AppService {
   getHello(): any {
   
-    return {
+    return [{
       name:"Birhanu Asmamaw",
       age:23,
       country:"Ethiopia",
       department:"Software Engineering",
-    }
+    },
+    {
+      name:"Deribew Shimels",
+      age:23,
+      country:"Ethiopia",
+      department:"Software Engineering",
+      Stream: "Arteficial Intelligence",
+    }]
   }
 }
