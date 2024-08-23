@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -19,5 +19,12 @@ export class UserController {
   async getAllUsers(){
     return this.usersService.getAllUsers();
   }
+
+  @Get(':id')
+  async findUserById(@Param('id') userId : string) {
+    return this.usersService.findUserById(userId);
+  }
+
+  
 
 }

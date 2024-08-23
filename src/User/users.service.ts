@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from './user.schema';
@@ -17,5 +17,12 @@ export class UsersService {
     return await this.userModel.find().exec();
   }
   
-  // Add other methods to interact with your user data
+  async findUserById(userId: string): Promise<User> {
+    const User =  await this.userModel.findById(userId).exec();
+ 
+    if(!User){
+      throw new NotFoundException(`User with Id ${userId} not found`);
+    }
+      return User;
+   } // Add other methods to interact with your user data
 }
