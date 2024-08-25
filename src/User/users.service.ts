@@ -36,5 +36,13 @@ export class UsersService {
     return existingUser;
   } 
 
+  // Method to delete a user by ID
+  async deleteUser(userId: string): Promise<User>{
+   const deleteUser = await this.userModel.findByIdAndDelete(userId).exec();
+   if (!deleteUser){
+    throw new NotFoundException(`User with Id ${userId} not found`)
+   }
+   return deleteUser;
 
+  }
 }
