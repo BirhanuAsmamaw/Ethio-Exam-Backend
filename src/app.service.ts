@@ -10,7 +10,9 @@ export class AppService {
       age:23,
       country:"Ethiopia",
       department:"Software Engineering",
+      Stream: "Cyber Security",
     },
+
     {
       name:"Deribew Shimels",
       age:23,
