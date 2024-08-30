@@ -16,5 +16,4 @@ import {AdminSchema} from './admin.schema';
     }
 )
 
-export class AdminsModule {
-}
+export class AdminsModule {}

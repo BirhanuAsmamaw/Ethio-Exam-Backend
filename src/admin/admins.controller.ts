@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Body, Controller, Post } from "@nestjs/common";
 import { AdminService } from "./admins.service";
-import {Admin} from './admin.schema';
+// import { Admin } from "./admin.schema";
 
 @Controller('admins')
 export class AdminController{
@@ -9,11 +9,12 @@ export class AdminController{
 
     @Post('create')
     async createAdmin(
-        @Body('name') name : string,
-        @Body('email') email : string,
-        @Body('password') password : string,
+        @Body() body : {name: string, email: string, password: string}
     ){
-        return this.adminService.createAdmin(name , email ,password)
+        const {name, email, password} = body;
+        console.log(body);
+        return this.adminService.createAdmin(name , email ,password);
     }
+
 }
 
