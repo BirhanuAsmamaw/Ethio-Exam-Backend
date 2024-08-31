@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { AdminService } from "./admins.service";
-// import { Admin } from "./admin.schema";
+import { Admin } from "./admin.schema";
 
 @Controller('admins')
 export class AdminController{
@@ -12,7 +12,7 @@ export class AdminController{
         @Body() body : {name: string, email: string, password: string}
     ){
         const {name, email, password} = body;
-        console.log(body);
+        // console.log(body);
         return this.adminService.createAdmin(name , email ,password);
     }
 
@@ -26,8 +26,22 @@ export class AdminController{
     async findAdminById(@Param('id') AdminId: string){
         return  this.adminService.findAdminById(AdminId);
     }
+
+    @Patch(':id')
+    async updateAdmin(
+        @Param('id') AdminId: string,
+        @Body() updateData: Partial<Admin>
+    ){
+        return this.adminService.updateAdmin(AdminId, updateData)
+    }
+
+    @Delete(':id')
+    async deleteAdmin(@Param('id') AdminId: string){
+        await this.adminService.deleteAdmin(AdminId);
+        return {message: `Admin with Id ${AdminId} deleted successfully`};
+    }
        
-        
+     
 
       
     

@@ -38,11 +38,11 @@ export class UsersService {
 
   // Method to delete a user by ID
   async deleteUser(userId: string): Promise<User>{
-   const deleteUser = await this.userModel.findByIdAndDelete(userId).exec();
-   if (!deleteUser){
+   const deleteThisUser = await this.userModel.findByIdAndDelete(userId).exec();
+   if (!deleteThisUser){
     throw new NotFoundException(`User with Id ${userId} not found`)
    }
-   return deleteUser;
+   return deleteThisUser;
 
   }
 }

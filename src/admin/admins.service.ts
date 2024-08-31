@@ -26,6 +26,20 @@ export class AdminService {
         }
         return Admin;
         }
-    
+
+    async updateAdmin(AdminId: string, updateData: Partial<Admin>): Promise<Admin>{
+        const existingAdmin = await this.AdminModel.findByIdAndUpdate(AdminId, updateData, {new: true}).exec();
+        if (!existingAdmin){
+            throw new NotFoundException(`Admin with Id ${AdminId} not found`)
+        }
+        return existingAdmin;
+    }
+    async deleteAdmin(AdminId: string): Promise<Admin>{
+        const deleteThisAdmin = await this.AdminModel.findByIdAndDelete(AdminId).exec();
+        if (!deleteThisAdmin){
+            throw new NotFoundException(`Admin withh Id ${AdminId} not found`)
+        }
+        return deleteThisAdmin;
+    }
 }
 
