@@ -16,7 +16,7 @@ export class UserController {
     return this.usersService.createUser(name, email, password);
   }
 
-  @Get("list")
+  @Get("all")
   async getAllUsers(){
     return this.usersService.getAllUsers();
   }

@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { AdminService } from "./admins.service";
 // import { Admin } from "./admin.schema";
 
@@ -15,6 +15,22 @@ export class AdminController{
         console.log(body);
         return this.adminService.createAdmin(name , email ,password);
     }
+
+    @Get('all')
+    async getAllAdmins(
+    ){
+        return this.adminService.getAllAdmins();
+    }
+
+    @Get(':id')
+    async findAdminById(@Param('id') AdminId: string){
+        return  this.adminService.findAdminById(AdminId);
+    }
+       
+        
+
+      
+    
 
 }
 
